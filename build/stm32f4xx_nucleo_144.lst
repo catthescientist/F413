@@ -1,0 +1,2061 @@
+ARM GAS  /tmp/ccw9oWBc.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_nucleo_144.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.ADCx_MspInit,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	ADCx_MspInit:
+  25              	.LFB225:
+  26              		.file 1 "Core/Src/stm32f4xx_nucleo_144.c"
+   1:Core/Src/stm32f4xx_nucleo_144.c **** /**
+   2:Core/Src/stm32f4xx_nucleo_144.c ****   ******************************************************************************
+   3:Core/Src/stm32f4xx_nucleo_144.c ****   * @file    stm32f4xx_nucleo_144.c
+   4:Core/Src/stm32f4xx_nucleo_144.c ****   * @author  MCD Application Team
+   5:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief   This file provides set of firmware functions to manage:
+   6:Core/Src/stm32f4xx_nucleo_144.c ****   *          - LEDs and push-button available on STM32F4XX-Nucleo-144 Kit 
+   7:Core/Src/stm32f4xx_nucleo_144.c ****   *            from STMicroelectronics
+   8:Core/Src/stm32f4xx_nucleo_144.c ****   *          - LCD, joystick and microSD available on Adafruit 1.8" TFT LCD 
+   9:Core/Src/stm32f4xx_nucleo_144.c ****   *            shield (reference ID 802)
+  10:Core/Src/stm32f4xx_nucleo_144.c ****   ******************************************************************************
+  11:Core/Src/stm32f4xx_nucleo_144.c ****   * @attention
+  12:Core/Src/stm32f4xx_nucleo_144.c ****   *
+  13:Core/Src/stm32f4xx_nucleo_144.c ****   * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  14:Core/Src/stm32f4xx_nucleo_144.c ****   *
+  15:Core/Src/stm32f4xx_nucleo_144.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  16:Core/Src/stm32f4xx_nucleo_144.c ****   * are permitted provided that the following conditions are met:
+  17:Core/Src/stm32f4xx_nucleo_144.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  18:Core/Src/stm32f4xx_nucleo_144.c ****   *      this list of conditions and the following disclaimer.
+  19:Core/Src/stm32f4xx_nucleo_144.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  20:Core/Src/stm32f4xx_nucleo_144.c ****   *      this list of conditions and the following disclaimer in the documentation
+  21:Core/Src/stm32f4xx_nucleo_144.c ****   *      and/or other materials provided with the distribution.
+  22:Core/Src/stm32f4xx_nucleo_144.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  23:Core/Src/stm32f4xx_nucleo_144.c ****   *      may be used to endorse or promote products derived from this software
+  24:Core/Src/stm32f4xx_nucleo_144.c ****   *      without specific prior written permission.
+  25:Core/Src/stm32f4xx_nucleo_144.c ****   *
+  26:Core/Src/stm32f4xx_nucleo_144.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  27:Core/Src/stm32f4xx_nucleo_144.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  28:Core/Src/stm32f4xx_nucleo_144.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  29:Core/Src/stm32f4xx_nucleo_144.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  30:Core/Src/stm32f4xx_nucleo_144.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  31:Core/Src/stm32f4xx_nucleo_144.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  32:Core/Src/stm32f4xx_nucleo_144.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ARM GAS  /tmp/ccw9oWBc.s 			page 2
+
+
+  33:Core/Src/stm32f4xx_nucleo_144.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  34:Core/Src/stm32f4xx_nucleo_144.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  35:Core/Src/stm32f4xx_nucleo_144.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  36:Core/Src/stm32f4xx_nucleo_144.c ****   *
+  37:Core/Src/stm32f4xx_nucleo_144.c ****   ******************************************************************************
+  38:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  39:Core/Src/stm32f4xx_nucleo_144.c ****   
+  40:Core/Src/stm32f4xx_nucleo_144.c **** /* Includes ------------------------------------------------------------------*/
+  41:Core/Src/stm32f4xx_nucleo_144.c **** #include "stm32f4xx_nucleo_144.h"
+  42:Core/Src/stm32f4xx_nucleo_144.c **** 
+  43:Core/Src/stm32f4xx_nucleo_144.c **** 
+  44:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup BSP BSP
+  45:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  46:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  47:Core/Src/stm32f4xx_nucleo_144.c **** 
+  48:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144 STM32F4XX NUCLEO 144
+  49:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  50:Core/Src/stm32f4xx_nucleo_144.c ****   */   
+  51:Core/Src/stm32f4xx_nucleo_144.c ****     
+  52:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL STM32F4XX NUCLEO 144 LOW LEVEL
+  53:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief This file provides set of firmware functions to manage Leds and push-button
+  54:Core/Src/stm32f4xx_nucleo_144.c ****   *        available on STM32F4xx-Nucleo Kit from STMicroelectronics.
+  55:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  56:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  57:Core/Src/stm32f4xx_nucleo_144.c **** 
+  58:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_TypesDefinitions STM32F4XX NUCLEO 144 LOW LEVE
+  59:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  60:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  61:Core/Src/stm32f4xx_nucleo_144.c **** /**
+  62:Core/Src/stm32f4xx_nucleo_144.c ****   * @}
+  63:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  64:Core/Src/stm32f4xx_nucleo_144.c **** 
+  65:Core/Src/stm32f4xx_nucleo_144.c **** 
+  66:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_Defines STM32F4XX NUCLEO 144 LOW LEVEL Private
+  67:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  68:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  69:Core/Src/stm32f4xx_nucleo_144.c **** 
+  70:Core/Src/stm32f4xx_nucleo_144.c **** /**
+  71:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief STM32F4xx NUCLEO BSP Driver version number V1.0.3
+  72:Core/Src/stm32f4xx_nucleo_144.c ****   */
+  73:Core/Src/stm32f4xx_nucleo_144.c **** #define __STM32F4xx_NUCLEO_BSP_VERSION_MAIN   (0x01) /*!< [31:24] main version */
+  74:Core/Src/stm32f4xx_nucleo_144.c **** #define __STM32F4xx_NUCLEO_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
+  75:Core/Src/stm32f4xx_nucleo_144.c **** #define __STM32F4xx_NUCLEO_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
+  76:Core/Src/stm32f4xx_nucleo_144.c **** #define __STM32F4xx_NUCLEO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
+  77:Core/Src/stm32f4xx_nucleo_144.c **** #define __STM32F4xx_NUCLEO_BSP_VERSION        ((__STM32F4xx_NUCLEO_BSP_VERSION_MAIN << 24)\
+  78:Core/Src/stm32f4xx_nucleo_144.c ****                                              |(__STM32F4xx_NUCLEO_BSP_VERSION_SUB1 << 16)\
+  79:Core/Src/stm32f4xx_nucleo_144.c ****                                              |(__STM32F4xx_NUCLEO_BSP_VERSION_SUB2 << 8 )\
+  80:Core/Src/stm32f4xx_nucleo_144.c ****                                              |(__STM32F4xx_NUCLEO_BSP_VERSION_RC))   
+  81:Core/Src/stm32f4xx_nucleo_144.c **** 
+  82:Core/Src/stm32f4xx_nucleo_144.c **** /**
+  83:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief LINK SD Card
+  84:Core/Src/stm32f4xx_nucleo_144.c ****   */
+  85:Core/Src/stm32f4xx_nucleo_144.c **** #define SD_DUMMY_BYTE            0xFF
+  86:Core/Src/stm32f4xx_nucleo_144.c **** #define SD_NO_RESPONSE_EXPECTED  0x80
+  87:Core/Src/stm32f4xx_nucleo_144.c **** 
+  88:Core/Src/stm32f4xx_nucleo_144.c **** /**
+  89:Core/Src/stm32f4xx_nucleo_144.c ****   * @}
+ARM GAS  /tmp/ccw9oWBc.s 			page 3
+
+
+  90:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  91:Core/Src/stm32f4xx_nucleo_144.c **** 
+  92:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_Macros STM32F4XX NUCLEO 144 LOW LEVEL Private 
+  93:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+  94:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  95:Core/Src/stm32f4xx_nucleo_144.c **** /**
+  96:Core/Src/stm32f4xx_nucleo_144.c ****   * @}
+  97:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+  98:Core/Src/stm32f4xx_nucleo_144.c **** 
+  99:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_Variables STM32F4XX NUCLEO 144 LOW LEVEL Priva
+ 100:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+ 101:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+ 102:Core/Src/stm32f4xx_nucleo_144.c **** GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT};
+ 103:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 104:Core/Src/stm32f4xx_nucleo_144.c **** const uint16_t GPIO_PIN[LEDn] = {LED1_PIN, LED2_PIN, LED3_PIN};
+ 105:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 106:Core/Src/stm32f4xx_nucleo_144.c **** GPIO_TypeDef* BUTTON_PORT[BUTTONn] = {USER_BUTTON_GPIO_PORT}; 
+ 107:Core/Src/stm32f4xx_nucleo_144.c **** const uint16_t BUTTON_PIN[BUTTONn] = {USER_BUTTON_PIN}; 
+ 108:Core/Src/stm32f4xx_nucleo_144.c **** const uint8_t BUTTON_IRQn[BUTTONn] = {USER_BUTTON_EXTI_IRQn};
+ 109:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 110:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 111:Core/Src/stm32f4xx_nucleo_144.c ****  * @brief BUS variables
+ 112:Core/Src/stm32f4xx_nucleo_144.c ****  */
+ 113:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 114:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef ADAFRUIT_TFT_JOY_SD_ID802
+ 115:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_SPI_MODULE_ENABLED
+ 116:Core/Src/stm32f4xx_nucleo_144.c **** uint32_t SpixTimeout = NUCLEO_SPIx_TIMEOUT_MAX; /*<! Value of Timeout when SPI communication fails 
+ 117:Core/Src/stm32f4xx_nucleo_144.c **** static SPI_HandleTypeDef hnucleo_Spi; 
+ 118:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* HAL_SPI_MODULE_ENABLED */
+ 119:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 120:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_ADC_MODULE_ENABLED
+ 121:Core/Src/stm32f4xx_nucleo_144.c **** static ADC_HandleTypeDef hnucleo_Adc;
+ 122:Core/Src/stm32f4xx_nucleo_144.c **** /* ADC channel configuration structure declaration */
+ 123:Core/Src/stm32f4xx_nucleo_144.c **** static ADC_ChannelConfTypeDef sConfig;
+ 124:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* HAL_ADC_MODULE_ENABLED */
+ 125:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* ADAFRUIT_TFT_JOY_SD_ID802 */
+ 126:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 127:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 128:Core/Src/stm32f4xx_nucleo_144.c ****   * @}
+ 129:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+ 130:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 131:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_FunctionPrototypes STM32F4XX NUCLEO 144 LOW LE
+ 132:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+ 133:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 134:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef ADAFRUIT_TFT_JOY_SD_ID802
+ 135:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 136:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_SPI_MODULE_ENABLED
+ 137:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Init(void);
+ 138:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Write(uint8_t Value);
+ 139:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Error(void);
+ 140:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_MspInit(SPI_HandleTypeDef *hspi);
+ 141:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 142:Core/Src/stm32f4xx_nucleo_144.c **** /* SD IO functions */
+ 143:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_Init(void);
+ 144:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_CSState(uint8_t state);
+ 145:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLength);
+ 146:Core/Src/stm32f4xx_nucleo_144.c **** uint8_t SD_IO_WriteByte(uint8_t Data);
+ARM GAS  /tmp/ccw9oWBc.s 			page 4
+
+
+ 147:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 148:Core/Src/stm32f4xx_nucleo_144.c **** /* LCD IO functions */
+ 149:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_Init(void);
+ 150:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteData(uint8_t Data);
+ 151:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size);
+ 152:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteReg(uint8_t LCDReg);
+ 153:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_Delay(uint32_t delay);
+ 154:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* HAL_SPI_MODULE_ENABLED */
+ 155:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 156:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_ADC_MODULE_ENABLED
+ 157:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_Init(void);
+ 158:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_DeInit(void);
+ 159:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_MspInit(ADC_HandleTypeDef *hadc);
+ 160:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_MspDeInit(ADC_HandleTypeDef *hadc);
+ 161:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* HAL_ADC_MODULE_ENABLED */
+ 162:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 163:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* ADAFRUIT_TFT_JOY_SD_ID802 */
+ 164:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 165:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 166:Core/Src/stm32f4xx_nucleo_144.c ****   * @}
+ 167:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+ 168:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 169:Core/Src/stm32f4xx_nucleo_144.c **** /** @defgroup STM32F4XX_NUCLEO_144_LOW_LEVEL_Private_Functions STM32F4XX NUCLEO 144 LOW LEVEL Priva
+ 170:Core/Src/stm32f4xx_nucleo_144.c ****   * @{
+ 171:Core/Src/stm32f4xx_nucleo_144.c ****   */ 
+ 172:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 173:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 174:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  This method returns the STM32F4xx NUCLEO BSP Driver revision
+ 175:Core/Src/stm32f4xx_nucleo_144.c ****   * @retval version: 0xXYZR (8bits for each decimal, R for RC)
+ 176:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 177:Core/Src/stm32f4xx_nucleo_144.c **** uint32_t BSP_GetVersion(void)
+ 178:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 179:Core/Src/stm32f4xx_nucleo_144.c ****   return __STM32F4xx_NUCLEO_BSP_VERSION;
+ 180:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 181:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 182:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 183:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Configures LED GPIO.
+ 184:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Led: Specifies the Led to be configured. 
+ 185:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of following parameters:
+ 186:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED1
+ 187:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED2
+ 188:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED3
+ 189:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 190:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_LED_Init(Led_TypeDef Led)
+ 191:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 192:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 193:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 194:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable the GPIO_LED Clock */
+ 195:Core/Src/stm32f4xx_nucleo_144.c ****   LEDx_GPIO_CLK_ENABLE(Led);
+ 196:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 197:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure the GPIO_LED pin */
+ 198:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = GPIO_PIN[Led];
+ 199:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 200:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 201:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+ 202:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 203:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(GPIO_PORT[Led], &GPIO_InitStruct);
+ARM GAS  /tmp/ccw9oWBc.s 			page 5
+
+
+ 204:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_RESET); 
+ 205:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 206:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 207:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 208:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  DeInit LEDs.
+ 209:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Led: LED to be de-init. 
+ 210:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of the following values:
+ 211:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED1
+ 212:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED2
+ 213:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED3
+ 214:Core/Src/stm32f4xx_nucleo_144.c ****   * @note Led DeInit does not disable the GPIO clock nor disable the Mfx 
+ 215:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 216:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_LED_DeInit(Led_TypeDef Led)
+ 217:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 218:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  gpio_init_structure;
+ 219:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 220:Core/Src/stm32f4xx_nucleo_144.c ****   /* Turn off LED */
+ 221:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_RESET);
+ 222:Core/Src/stm32f4xx_nucleo_144.c ****   /* DeInit the GPIO_LED pin */
+ 223:Core/Src/stm32f4xx_nucleo_144.c ****   gpio_init_structure.Pin = GPIO_PIN[Led];
+ 224:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_DeInit(GPIO_PORT[Led], gpio_init_structure.Pin);
+ 225:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 226:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 227:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 228:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Turns selected LED On.
+ 229:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Led: Specifies the Led to be set on. 
+ 230:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of following parameters:
+ 231:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg LED2
+ 232:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 233:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_LED_On(Led_TypeDef Led)
+ 234:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 235:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_SET); 
+ 236:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 237:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 238:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 239:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Turns selected LED Off.
+ 240:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Led: Specifies the Led to be set off. 
+ 241:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of following parameters:
+ 242:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED1
+ 243:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED2
+ 244:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED3
+ 245:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 246:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_LED_Off(Led_TypeDef Led)
+ 247:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 248:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_RESET); 
+ 249:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 250:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 251:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 252:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Toggles the selected LED.
+ 253:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Led: Specifies the Led to be toggled. 
+ 254:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of following parameters:
+ 255:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED1
+ 256:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED2
+ 257:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg  LED3 
+ 258:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 259:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_LED_Toggle(Led_TypeDef Led)
+ 260:Core/Src/stm32f4xx_nucleo_144.c **** {
+ARM GAS  /tmp/ccw9oWBc.s 			page 6
+
+
+ 261:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_TogglePin(GPIO_PORT[Led], GPIO_PIN[Led]);
+ 262:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 263:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 264:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 265:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Configures Button GPIO and EXTI Line.
+ 266:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Button: Specifies the Button to be configured.
+ 267:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter should be: BUTTON_USER
+ 268:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  ButtonMode: Specifies Button mode.
+ 269:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter can be one of following parameters:   
+ 270:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg BUTTON_MODE_GPIO: Button will be used as simple IO 
+ 271:Core/Src/stm32f4xx_nucleo_144.c ****   *     @arg BUTTON_MODE_EXTI: Button will be connected to EXTI line with interrupt
+ 272:Core/Src/stm32f4xx_nucleo_144.c ****   *                            generation capability  
+ 273:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 274:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_PB_Init(Button_TypeDef Button, ButtonMode_TypeDef ButtonMode)
+ 275:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 276:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+ 277:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 278:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable the BUTTON Clock */
+ 279:Core/Src/stm32f4xx_nucleo_144.c ****   BUTTONx_GPIO_CLK_ENABLE(Button);
+ 280:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 281:Core/Src/stm32f4xx_nucleo_144.c ****   if(ButtonMode == BUTTON_MODE_GPIO)
+ 282:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 283:Core/Src/stm32f4xx_nucleo_144.c ****     /* Configure Button pin as input */
+ 284:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pin = BUTTON_PIN[Button];
+ 285:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 286:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 287:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+ 288:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStruct);
+ 289:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 290:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 291:Core/Src/stm32f4xx_nucleo_144.c ****   if(ButtonMode == BUTTON_MODE_EXTI)
+ 292:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 293:Core/Src/stm32f4xx_nucleo_144.c ****     /* Configure Button pin as input with External interrupt */
+ 294:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pin = BUTTON_PIN[Button];
+ 295:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 296:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING; 
+ 297:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStruct);
+ 298:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 299:Core/Src/stm32f4xx_nucleo_144.c ****     /* Enable and set Button EXTI Interrupt to the lowest priority */
+ 300:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_NVIC_SetPriority((IRQn_Type)(BUTTON_IRQn[Button]), 0x0F, 0x00);
+ 301:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_NVIC_EnableIRQ((IRQn_Type)(BUTTON_IRQn[Button]));
+ 302:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 303:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 304:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 305:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 306:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Push Button DeInit.
+ 307:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Button: Button to be configured
+ 308:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter should be: BUTTON_USER
+ 309:Core/Src/stm32f4xx_nucleo_144.c ****   * @note PB DeInit does not disable the GPIO clock
+ 310:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 311:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_PB_DeInit(Button_TypeDef Button)
+ 312:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 313:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef gpio_init_structure;
+ 314:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 315:Core/Src/stm32f4xx_nucleo_144.c ****   gpio_init_structure.Pin = BUTTON_PIN[Button];
+ 316:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_NVIC_DisableIRQ((IRQn_Type)(BUTTON_IRQn[Button]));
+ 317:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_DeInit(BUTTON_PORT[Button], gpio_init_structure.Pin);
+ARM GAS  /tmp/ccw9oWBc.s 			page 7
+
+
+ 318:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 319:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 320:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 321:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Returns the selected Button state.
+ 322:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Button: Specifies the Button to be checked.
+ 323:Core/Src/stm32f4xx_nucleo_144.c ****   *   This parameter should be: BUTTON_USER  
+ 324:Core/Src/stm32f4xx_nucleo_144.c ****   * @retval The Button GPIO pin value.
+ 325:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 326:Core/Src/stm32f4xx_nucleo_144.c **** uint32_t BSP_PB_GetState(Button_TypeDef Button)
+ 327:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 328:Core/Src/stm32f4xx_nucleo_144.c ****   return HAL_GPIO_ReadPin(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+ 329:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 330:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 331:Core/Src/stm32f4xx_nucleo_144.c **** /******************************************************************************
+ 332:Core/Src/stm32f4xx_nucleo_144.c ****                             BUS OPERATIONS
+ 333:Core/Src/stm32f4xx_nucleo_144.c **** *******************************************************************************/
+ 334:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef ADAFRUIT_TFT_JOY_SD_ID802
+ 335:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 336:Core/Src/stm32f4xx_nucleo_144.c **** /******************************* SPI ********************************/
+ 337:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_SPI_MODULE_ENABLED
+ 338:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 339:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 340:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes SPI MSP.
+ 341:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 342:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_MspInit(SPI_HandleTypeDef *hspi)
+ 343:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 344:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;  
+ 345:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 346:Core/Src/stm32f4xx_nucleo_144.c ****   /*** Configure the GPIOs ***/  
+ 347:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable GPIO clock */
+ 348:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_SPIx_SCK_GPIO_CLK_ENABLE();
+ 349:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_SPIx_MISO_MOSI_GPIO_CLK_ENABLE();
+ 350:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 351:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure SPI SCK */
+ 352:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = NUCLEO_SPIx_SCK_PIN;
+ 353:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 354:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull  = GPIO_PULLUP;
+ 355:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+ 356:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Alternate = NUCLEO_SPIx_SCK_AF;
+ 357:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(NUCLEO_SPIx_SCK_GPIO_PORT, &GPIO_InitStruct);
+ 358:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 359:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure SPI MISO and MOSI */ 
+ 360:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = NUCLEO_SPIx_MOSI_PIN;
+ 361:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Alternate = NUCLEO_SPIx_MISO_MOSI_AF;
+ 362:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+ 363:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(NUCLEO_SPIx_MISO_MOSI_GPIO_PORT, &GPIO_InitStruct);
+ 364:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 365:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = NUCLEO_SPIx_MISO_PIN;
+ 366:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull  = GPIO_PULLDOWN;
+ 367:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(NUCLEO_SPIx_MISO_MOSI_GPIO_PORT, &GPIO_InitStruct);
+ 368:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 369:Core/Src/stm32f4xx_nucleo_144.c ****   /*** Configure the SPI peripheral ***/ 
+ 370:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable SPI clock */
+ 371:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_SPIx_CLK_ENABLE();
+ 372:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 373:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 374:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ARM GAS  /tmp/ccw9oWBc.s 			page 8
+
+
+ 375:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes SPI HAL.
+ 376:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 377:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Init(void)
+ 378:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 379:Core/Src/stm32f4xx_nucleo_144.c ****   if(HAL_SPI_GetState(&hnucleo_Spi) == HAL_SPI_STATE_RESET)
+ 380:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 381:Core/Src/stm32f4xx_nucleo_144.c ****     /* SPI Config */
+ 382:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Instance = NUCLEO_SPIx;
+ 383:Core/Src/stm32f4xx_nucleo_144.c ****     /* SPI configuration contraints
+ 384:Core/Src/stm32f4xx_nucleo_144.c ****           - ST7735 LCD SPI interface max baudrate is 15MHz for write and 6.66MHz for read
+ 385:Core/Src/stm32f4xx_nucleo_144.c ****             Since the provided driver doesn't use read capability from LCD, only constraint 
+ 386:Core/Src/stm32f4xx_nucleo_144.c ****             on write baudrate is considered.
+ 387:Core/Src/stm32f4xx_nucleo_144.c ****           - SD card SPI interface max baudrate is 25MHz for write/read
+ 388:Core/Src/stm32f4xx_nucleo_144.c ****        to feat these constraints SPI baudrate is set to:
+ 389:Core/Src/stm32f4xx_nucleo_144.c **** 	      - For STM32F412ZG devices: 12,5 MHz maximum (PCLK2/SPI_BAUDRATEPRESCALER_8 = 100 MHz/8 = 12,
+ 390:Core/Src/stm32f4xx_nucleo_144.c **** 		  - For STM32F446ZE/STM32F429ZI devices: 11,25 MHz maximum (PCLK2/SPI_BAUDRATEPRESCALER_8 = 90 MH
+ 391:Core/Src/stm32f4xx_nucleo_144.c ****     */ 
+ 392:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+ 393:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.Direction = SPI_DIRECTION_2LINES;
+ 394:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.CLKPhase = SPI_PHASE_2EDGE;
+ 395:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.CLKPolarity = SPI_POLARITY_HIGH;
+ 396:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
+ 397:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.CRCPolynomial = 7;
+ 398:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.DataSize = SPI_DATASIZE_8BIT;
+ 399:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 400:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.NSS = SPI_NSS_SOFT;
+ 401:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.TIMode = SPI_TIMODE_DISABLED;
+ 402:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Spi.Init.Mode = SPI_MODE_MASTER;
+ 403:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 404:Core/Src/stm32f4xx_nucleo_144.c ****     SPIx_MspInit(&hnucleo_Spi);
+ 405:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_SPI_Init(&hnucleo_Spi);
+ 406:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 407:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 408:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 409:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 410:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  SPI Write a byte to device
+ 411:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataIn: value to be written
+ 412:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataOut: value to read
+ 413:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataLegnth: length of data
+ 414:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 415:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLegnth)
+ 416:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 417:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 418:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 419:Core/Src/stm32f4xx_nucleo_144.c ****   status = HAL_SPI_TransmitReceive(&hnucleo_Spi, (uint8_t*) DataIn, DataOut, DataLegnth, SpixTimeou
+ 420:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 421:Core/Src/stm32f4xx_nucleo_144.c ****   /* Check the communication status */
+ 422:Core/Src/stm32f4xx_nucleo_144.c ****   if(status != HAL_OK)
+ 423:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 424:Core/Src/stm32f4xx_nucleo_144.c ****     /* Execute user timeout callback */
+ 425:Core/Src/stm32f4xx_nucleo_144.c ****     SPIx_Error();
+ 426:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 427:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 428:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 429:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 430:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  SPI Write a byte to device.
+ 431:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Value: value to be written
+ARM GAS  /tmp/ccw9oWBc.s 			page 9
+
+
+ 432:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 433:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Write(uint8_t Value)
+ 434:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 435:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 436:Core/Src/stm32f4xx_nucleo_144.c ****   uint8_t data;
+ 437:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 438:Core/Src/stm32f4xx_nucleo_144.c ****   status = HAL_SPI_TransmitReceive(&hnucleo_Spi, (uint8_t*) &Value, &data, 1, SpixTimeout);
+ 439:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 440:Core/Src/stm32f4xx_nucleo_144.c ****   /* Check the communication status */
+ 441:Core/Src/stm32f4xx_nucleo_144.c ****   if(status != HAL_OK)
+ 442:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 443:Core/Src/stm32f4xx_nucleo_144.c ****     /* Execute user timeout callback */
+ 444:Core/Src/stm32f4xx_nucleo_144.c ****     SPIx_Error();
+ 445:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 446:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 447:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 448:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 449:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  SPI error treatment function
+ 450:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 451:Core/Src/stm32f4xx_nucleo_144.c **** static void SPIx_Error (void)
+ 452:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 453:Core/Src/stm32f4xx_nucleo_144.c ****   /* De-initialize the SPI communication BUS */
+ 454:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_SPI_DeInit(&hnucleo_Spi);
+ 455:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 456:Core/Src/stm32f4xx_nucleo_144.c ****   /* Re-Initiaize the SPI communication BUS */
+ 457:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_Init();
+ 458:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 459:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 460:Core/Src/stm32f4xx_nucleo_144.c **** /******************************************************************************
+ 461:Core/Src/stm32f4xx_nucleo_144.c ****                             LINK OPERATIONS
+ 462:Core/Src/stm32f4xx_nucleo_144.c **** *******************************************************************************/
+ 463:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 464:Core/Src/stm32f4xx_nucleo_144.c **** /********************************* LINK SD ************************************/
+ 465:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 466:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes the SD Card and put it into StandBy State (Ready for 
+ 467:Core/Src/stm32f4xx_nucleo_144.c ****   *         data transfer).
+ 468:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 469:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_Init(void)
+ 470:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 471:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 472:Core/Src/stm32f4xx_nucleo_144.c ****   uint8_t counter;
+ 473:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 474:Core/Src/stm32f4xx_nucleo_144.c ****   /* SD_CS_GPIO Periph clock enable */
+ 475:Core/Src/stm32f4xx_nucleo_144.c ****   SD_CS_GPIO_CLK_ENABLE();
+ 476:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 477:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure SD_CS_PIN pin: SD Card CS pin */
+ 478:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = SD_CS_PIN;
+ 479:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 480:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 481:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+ 482:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(SD_CS_GPIO_PORT, &GPIO_InitStruct);
+ 483:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 484:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 485:Core/Src/stm32f4xx_nucleo_144.c ****   /*  LCD chip select line perturbs SD also when the LCD is not used */
+ 486:Core/Src/stm32f4xx_nucleo_144.c ****   /*  this is a workaround to avoid sporadic failures during r/w operations */ 
+ 487:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_GPIO_CLK_ENABLE();
+ 488:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = LCD_CS_PIN;
+ARM GAS  /tmp/ccw9oWBc.s 			page 10
+
+
+ 489:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 490:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 491:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+ 492:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(LCD_CS_GPIO_PORT, &GPIO_InitStruct);
+ 493:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_HIGH();
+ 494:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 495:Core/Src/stm32f4xx_nucleo_144.c ****   /*------------Put SD in SPI mode--------------*/
+ 496:Core/Src/stm32f4xx_nucleo_144.c ****   /* SD SPI Config */
+ 497:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_Init();
+ 498:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 499:Core/Src/stm32f4xx_nucleo_144.c ****   /* SD chip select high */
+ 500:Core/Src/stm32f4xx_nucleo_144.c ****   SD_CS_HIGH();
+ 501:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 502:Core/Src/stm32f4xx_nucleo_144.c ****   /* Send dummy byte 0xFF, 10 times with CS high */
+ 503:Core/Src/stm32f4xx_nucleo_144.c ****   /* Rise CS and MOSI for 80 clocks cycles */
+ 504:Core/Src/stm32f4xx_nucleo_144.c ****   for (counter = 0; counter <= 9; counter++)
+ 505:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 506:Core/Src/stm32f4xx_nucleo_144.c ****     /* Send dummy byte 0xFF */
+ 507:Core/Src/stm32f4xx_nucleo_144.c ****     SD_IO_WriteByte(SD_DUMMY_BYTE);
+ 508:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 509:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 510:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 511:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 512:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Set the SD_CS pin.
+ 513:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  val: pin value.
+ 514:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 515:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_CSState(uint8_t val)
+ 516:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 517:Core/Src/stm32f4xx_nucleo_144.c ****   if(val == 1) 
+ 518:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 519:Core/Src/stm32f4xx_nucleo_144.c ****     SD_CS_HIGH();
+ 520:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 521:Core/Src/stm32f4xx_nucleo_144.c ****   else
+ 522:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 523:Core/Src/stm32f4xx_nucleo_144.c ****     SD_CS_LOW();
+ 524:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 525:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 526:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 527:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 528:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Write a byte on the SD.
+ 529:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataIn: byte to send.
+ 530:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataOut: byte to read
+ 531:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  DataLength: length of data
+ 532:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 533:Core/Src/stm32f4xx_nucleo_144.c **** void SD_IO_WriteReadData(const uint8_t *DataIn, uint8_t *DataOut, uint16_t DataLength)
+ 534:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 535:Core/Src/stm32f4xx_nucleo_144.c ****   /* Send the byte */
+ 536:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_WriteReadData(DataIn, DataOut, DataLength);
+ 537:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 538:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 539:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 540:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Writes a byte on the SD.
+ 541:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Data: byte to send.
+ 542:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 543:Core/Src/stm32f4xx_nucleo_144.c **** uint8_t SD_IO_WriteByte(uint8_t Data)
+ 544:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 545:Core/Src/stm32f4xx_nucleo_144.c ****   uint8_t tmp;
+ARM GAS  /tmp/ccw9oWBc.s 			page 11
+
+
+ 546:Core/Src/stm32f4xx_nucleo_144.c ****   /* Send the byte */
+ 547:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_WriteReadData(&Data,&tmp,1);
+ 548:Core/Src/stm32f4xx_nucleo_144.c ****   return tmp;
+ 549:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 550:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 551:Core/Src/stm32f4xx_nucleo_144.c **** /********************************* LINK LCD ***********************************/
+ 552:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 553:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes the LCD
+ 554:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 555:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_Init(void)
+ 556:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 557:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 558:Core/Src/stm32f4xx_nucleo_144.c ****    
+ 559:Core/Src/stm32f4xx_nucleo_144.c ****   /* LCD_CS_GPIO and LCD_DC_GPIO Periph clock enable */
+ 560:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_GPIO_CLK_ENABLE();
+ 561:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_DC_GPIO_CLK_ENABLE();
+ 562:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 563:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure LCD_CS_PIN pin: LCD Card CS pin */
+ 564:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = LCD_CS_PIN;
+ 565:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 566:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 567:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+ 568:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(LCD_CS_GPIO_PORT, &GPIO_InitStruct);
+ 569:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 570:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure LCD_DC_PIN pin: LCD Card DC pin */
+ 571:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = LCD_DC_PIN;
+ 572:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(LCD_DC_GPIO_PORT, &GPIO_InitStruct);
+ 573:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 574:Core/Src/stm32f4xx_nucleo_144.c ****   /* LCD chip select high */
+ 575:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_HIGH();
+ 576:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 577:Core/Src/stm32f4xx_nucleo_144.c ****   /* LCD SPI Config */
+ 578:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_Init();
+ 579:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 580:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 581:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 582:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Writes command to select the LCD register.
+ 583:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  LCDReg: Address of the selected register.
+ 584:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 585:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteReg(uint8_t LCDReg)
+ 586:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 587:Core/Src/stm32f4xx_nucleo_144.c ****   /* Reset LCD control line CS */
+ 588:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_LOW();
+ 589:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 590:Core/Src/stm32f4xx_nucleo_144.c ****   /* Set LCD data/command line DC to Low */
+ 591:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_DC_LOW();
+ 592:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 593:Core/Src/stm32f4xx_nucleo_144.c ****   /* Send Command */
+ 594:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_Write(LCDReg);
+ 595:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 596:Core/Src/stm32f4xx_nucleo_144.c ****   /* Deselect : Chip Select high */
+ 597:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_HIGH();
+ 598:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 599:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 600:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 601:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Writes data to select the LCD register.
+ 602:Core/Src/stm32f4xx_nucleo_144.c ****   *         This function must be used after st7735_WriteReg() function
+ARM GAS  /tmp/ccw9oWBc.s 			page 12
+
+
+ 603:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Data: data to write to the selected register.
+ 604:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 605:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteData(uint8_t Data)
+ 606:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 607:Core/Src/stm32f4xx_nucleo_144.c ****   /* Reset LCD control line CS */
+ 608:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_LOW();
+ 609:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 610:Core/Src/stm32f4xx_nucleo_144.c ****   /* Set LCD data/command line DC to High */
+ 611:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_DC_HIGH();
+ 612:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 613:Core/Src/stm32f4xx_nucleo_144.c ****   /* Send Data */
+ 614:Core/Src/stm32f4xx_nucleo_144.c ****   SPIx_Write(Data);
+ 615:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 616:Core/Src/stm32f4xx_nucleo_144.c ****   /* Deselect : Chip Select high */
+ 617:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_HIGH();
+ 618:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 619:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 620:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 621:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Write register value.
+ 622:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  pData Pointer on the register value
+ 623:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Size Size of byte to transmit to the register
+ 624:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 625:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size)
+ 626:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 627:Core/Src/stm32f4xx_nucleo_144.c ****   uint32_t counter = 0;
+ 628:Core/Src/stm32f4xx_nucleo_144.c ****   __IO uint32_t data = 0;
+ 629:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 630:Core/Src/stm32f4xx_nucleo_144.c ****   /* Reset LCD control line CS */
+ 631:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_LOW();
+ 632:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 633:Core/Src/stm32f4xx_nucleo_144.c ****   /* Set LCD data/command line DC to High */
+ 634:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_DC_HIGH();
+ 635:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 636:Core/Src/stm32f4xx_nucleo_144.c ****   if (Size == 1)
+ 637:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 638:Core/Src/stm32f4xx_nucleo_144.c ****     /* Only 1 byte to be sent to LCD - general interface can be used */
+ 639:Core/Src/stm32f4xx_nucleo_144.c ****     /* Send Data */
+ 640:Core/Src/stm32f4xx_nucleo_144.c ****     SPIx_Write(*pData);
+ 641:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 642:Core/Src/stm32f4xx_nucleo_144.c ****   else
+ 643:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 644:Core/Src/stm32f4xx_nucleo_144.c ****     /* Several data should be sent in a raw */
+ 645:Core/Src/stm32f4xx_nucleo_144.c ****     /* Direct SPI accesses for optimization */
+ 646:Core/Src/stm32f4xx_nucleo_144.c ****     for (counter = Size; counter != 0; counter--)
+ 647:Core/Src/stm32f4xx_nucleo_144.c ****     {
+ 648:Core/Src/stm32f4xx_nucleo_144.c ****       while(((hnucleo_Spi.Instance->SR) & SPI_FLAG_TXE) != SPI_FLAG_TXE)
+ 649:Core/Src/stm32f4xx_nucleo_144.c ****       {
+ 650:Core/Src/stm32f4xx_nucleo_144.c ****       }  
+ 651:Core/Src/stm32f4xx_nucleo_144.c ****       /* Need to invert bytes for LCD*/
+ 652:Core/Src/stm32f4xx_nucleo_144.c ****       *((__IO uint8_t*)&hnucleo_Spi.Instance->DR) = *(pData+1);
+ 653:Core/Src/stm32f4xx_nucleo_144.c ****       
+ 654:Core/Src/stm32f4xx_nucleo_144.c ****       while(((hnucleo_Spi.Instance->SR) & SPI_FLAG_TXE) != SPI_FLAG_TXE)
+ 655:Core/Src/stm32f4xx_nucleo_144.c ****       {
+ 656:Core/Src/stm32f4xx_nucleo_144.c ****       }  
+ 657:Core/Src/stm32f4xx_nucleo_144.c ****       *((__IO uint8_t*)&hnucleo_Spi.Instance->DR) = *pData;
+ 658:Core/Src/stm32f4xx_nucleo_144.c ****       counter--;
+ 659:Core/Src/stm32f4xx_nucleo_144.c ****       pData += 2;
+ARM GAS  /tmp/ccw9oWBc.s 			page 13
+
+
+ 660:Core/Src/stm32f4xx_nucleo_144.c ****     }
+ 661:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 662:Core/Src/stm32f4xx_nucleo_144.c ****     /* Wait until the bus is ready before releasing Chip select */ 
+ 663:Core/Src/stm32f4xx_nucleo_144.c ****     while(((hnucleo_Spi.Instance->SR) & SPI_FLAG_BSY) != RESET)
+ 664:Core/Src/stm32f4xx_nucleo_144.c ****     {
+ 665:Core/Src/stm32f4xx_nucleo_144.c ****     }  
+ 666:Core/Src/stm32f4xx_nucleo_144.c ****   } 
+ 667:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 668:Core/Src/stm32f4xx_nucleo_144.c ****   /* Empty the Rx fifo */
+ 669:Core/Src/stm32f4xx_nucleo_144.c ****   data = *(&hnucleo_Spi.Instance->DR);
+ 670:Core/Src/stm32f4xx_nucleo_144.c ****   UNUSED(data);  /* Remove GNU warning */
+ 671:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 672:Core/Src/stm32f4xx_nucleo_144.c ****   /* Deselect : Chip Select high */
+ 673:Core/Src/stm32f4xx_nucleo_144.c ****   LCD_CS_HIGH();
+ 674:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 675:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 676:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 677:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Wait for loop in ms.
+ 678:Core/Src/stm32f4xx_nucleo_144.c ****   * @param  Delay in ms.
+ 679:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 680:Core/Src/stm32f4xx_nucleo_144.c **** void LCD_Delay(uint32_t Delay)
+ 681:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 682:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_Delay(Delay);
+ 683:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 684:Core/Src/stm32f4xx_nucleo_144.c **** #endif /* HAL_SPI_MODULE_ENABLED */
+ 685:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 686:Core/Src/stm32f4xx_nucleo_144.c **** /******************************* ADC driver ********************************/
+ 687:Core/Src/stm32f4xx_nucleo_144.c **** #ifdef HAL_ADC_MODULE_ENABLED
+ 688:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 689:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 690:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes ADC MSP.
+ 691:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 692:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_MspInit(ADC_HandleTypeDef *hadc)
+ 693:Core/Src/stm32f4xx_nucleo_144.c **** {
+  27              		.loc 1 693 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 32
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 30B5     		push	{r4, r5, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38 0002 89B0     		sub	sp, sp, #36
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 48
+  41              	.LBB2:
+ 694:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 695:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 696:Core/Src/stm32f4xx_nucleo_144.c ****   /*** Configure the GPIOs ***/  
+ 697:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable GPIO clock */
+ 698:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_ADCx_GPIO_CLK_ENABLE();
+  42              		.loc 1 698 0
+  43 0004 0025     		movs	r5, #0
+  44 0006 0195     		str	r5, [sp, #4]
+ARM GAS  /tmp/ccw9oWBc.s 			page 14
+
+
+  45 0008 0F4C     		ldr	r4, .L3
+  46 000a 236B     		ldr	r3, [r4, #48]
+  47 000c 43F00403 		orr	r3, r3, #4
+  48 0010 2363     		str	r3, [r4, #48]
+  49 0012 236B     		ldr	r3, [r4, #48]
+  50 0014 03F00403 		and	r3, r3, #4
+  51 0018 0193     		str	r3, [sp, #4]
+  52 001a 019B     		ldr	r3, [sp, #4]
+  53              	.LBE2:
+ 699:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 700:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure the selected ADC Channel as analog input */
+ 701:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = NUCLEO_ADCx_GPIO_PIN ;
+  54              		.loc 1 701 0
+  55 001c 0223     		movs	r3, #2
+  56 001e 0393     		str	r3, [sp, #12]
+ 702:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  57              		.loc 1 702 0
+  58 0020 0323     		movs	r3, #3
+  59 0022 0493     		str	r3, [sp, #16]
+ 703:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  60              		.loc 1 703 0
+  61 0024 0595     		str	r5, [sp, #20]
+ 704:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_Init(NUCLEO_ADCx_GPIO_PORT, &GPIO_InitStruct);
+  62              		.loc 1 704 0
+  63 0026 03A9     		add	r1, sp, #12
+  64 0028 0848     		ldr	r0, .L3+4
+  65              	.LVL1:
+  66 002a FFF7FEFF 		bl	HAL_GPIO_Init
+  67              	.LVL2:
+  68              	.LBB3:
+ 705:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 706:Core/Src/stm32f4xx_nucleo_144.c ****   /*** Configure the ADC peripheral ***/ 
+ 707:Core/Src/stm32f4xx_nucleo_144.c ****   /* Enable ADC clock */
+ 708:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_ADCx_CLK_ENABLE(); 
+  69              		.loc 1 708 0
+  70 002e 0295     		str	r5, [sp, #8]
+  71 0030 636C     		ldr	r3, [r4, #68]
+  72 0032 43F48073 		orr	r3, r3, #256
+  73 0036 6364     		str	r3, [r4, #68]
+  74 0038 636C     		ldr	r3, [r4, #68]
+  75 003a 03F48073 		and	r3, r3, #256
+  76 003e 0293     		str	r3, [sp, #8]
+  77 0040 029B     		ldr	r3, [sp, #8]
+  78              	.LBE3:
+ 709:Core/Src/stm32f4xx_nucleo_144.c **** }
+  79              		.loc 1 709 0
+  80 0042 09B0     		add	sp, sp, #36
+  81              	.LCFI2:
+  82              		.cfi_def_cfa_offset 12
+  83              		@ sp needed
+  84 0044 30BD     		pop	{r4, r5, pc}
+  85              	.L4:
+  86 0046 00BF     		.align	2
+  87              	.L3:
+  88 0048 00380240 		.word	1073887232
+  89 004c 00080240 		.word	1073874944
+  90              		.cfi_endproc
+ARM GAS  /tmp/ccw9oWBc.s 			page 15
+
+
+  91              	.LFE225:
+  93              		.section	.text.ADCx_MspDeInit,"ax",%progbits
+  94              		.align	1
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  98              		.fpu fpv4-sp-d16
+ 100              	ADCx_MspDeInit:
+ 101              	.LFB226:
+ 710:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 711:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 712:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  DeInitializes ADC MSP.
+ 713:Core/Src/stm32f4xx_nucleo_144.c ****   * @note ADC DeInit does not disable the GPIO clock
+ 714:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 715:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_MspDeInit(ADC_HandleTypeDef *hadc)
+ 716:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 102              		.loc 1 716 0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106              	.LVL3:
+ 107 0000 08B5     		push	{r3, lr}
+ 108              	.LCFI3:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+ 717:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 718:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 719:Core/Src/stm32f4xx_nucleo_144.c ****   /*** DeInit the ADC peripheral ***/ 
+ 720:Core/Src/stm32f4xx_nucleo_144.c ****   /* Disable ADC clock */
+ 721:Core/Src/stm32f4xx_nucleo_144.c ****   NUCLEO_ADCx_CLK_DISABLE(); 
+ 112              		.loc 1 721 0
+ 113 0002 054A     		ldr	r2, .L7
+ 114 0004 536C     		ldr	r3, [r2, #68]
+ 115 0006 23F48073 		bic	r3, r3, #256
+ 116 000a 5364     		str	r3, [r2, #68]
+ 722:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 723:Core/Src/stm32f4xx_nucleo_144.c ****   /* Configure the selected ADC Channel as analog input */
+ 724:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pin = NUCLEO_ADCx_GPIO_PIN ;
+ 725:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_DeInit(NUCLEO_ADCx_GPIO_PORT, GPIO_InitStruct.Pin);
+ 117              		.loc 1 725 0
+ 118 000c 0221     		movs	r1, #2
+ 119 000e 0348     		ldr	r0, .L7+4
+ 120              	.LVL4:
+ 121 0010 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 122              	.LVL5:
+ 726:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 727:Core/Src/stm32f4xx_nucleo_144.c ****   /* Disable GPIO clock has to be done by the application*/
+ 728:Core/Src/stm32f4xx_nucleo_144.c ****   /* NUCLEO_ADCx_GPIO_CLK_DISABLE(); */
+ 729:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 123              		.loc 1 729 0
+ 124 0014 08BD     		pop	{r3, pc}
+ 125              	.L8:
+ 126 0016 00BF     		.align	2
+ 127              	.L7:
+ 128 0018 00380240 		.word	1073887232
+ 129 001c 00080240 		.word	1073874944
+ARM GAS  /tmp/ccw9oWBc.s 			page 16
+
+
+ 130              		.cfi_endproc
+ 131              	.LFE226:
+ 133              		.section	.text.ADCx_Init,"ax",%progbits
+ 134              		.align	1
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.fpu fpv4-sp-d16
+ 140              	ADCx_Init:
+ 141              	.LFB227:
+ 730:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 731:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 732:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes ADC HAL.
+ 733:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 734:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_Init(void)
+ 735:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 142              		.loc 1 735 0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146 0000 10B5     		push	{r4, lr}
+ 147              	.LCFI4:
+ 148              		.cfi_def_cfa_offset 8
+ 149              		.cfi_offset 4, -8
+ 150              		.cfi_offset 14, -4
+ 736:Core/Src/stm32f4xx_nucleo_144.c ****   if(HAL_ADC_GetState(&hnucleo_Adc) == HAL_ADC_STATE_RESET)
+ 151              		.loc 1 736 0
+ 152 0002 0F48     		ldr	r0, .L13
+ 153 0004 FFF7FEFF 		bl	HAL_ADC_GetState
+ 154              	.LVL6:
+ 155 0008 00B1     		cbz	r0, .L12
+ 156              	.L9:
+ 737:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 738:Core/Src/stm32f4xx_nucleo_144.c ****     /* ADC Config */
+ 739:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Instance                   = NUCLEO_ADCx;
+ 740:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ClockPrescaler        = ADC_CLOCKPRESCALER_PCLK_DIV4; /* (must not exceed 36MH
+ 741:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.Resolution            = ADC_RESOLUTION12b;
+ 742:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+ 743:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ContinuousConvMode    = DISABLE;
+ 744:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DiscontinuousConvMode = DISABLE;
+ 745:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;
+ 746:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.EOCSelection          = EOC_SINGLE_CONV;
+ 747:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.NbrOfConversion       = 1;
+ 748:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DMAContinuousRequests = DISABLE;    
+ 749:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 750:Core/Src/stm32f4xx_nucleo_144.c ****     ADCx_MspInit(&hnucleo_Adc);
+ 751:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_ADC_Init(&hnucleo_Adc);
+ 752:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 753:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 157              		.loc 1 753 0
+ 158 000a 10BD     		pop	{r4, pc}
+ 159              	.L12:
+ 739:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ClockPrescaler        = ADC_CLOCKPRESCALER_PCLK_DIV4; /* (must not exceed 36MH
+ 160              		.loc 1 739 0
+ 161 000c 0C4C     		ldr	r4, .L13
+ 162 000e 0D4B     		ldr	r3, .L13+4
+ 163 0010 2360     		str	r3, [r4]
+ARM GAS  /tmp/ccw9oWBc.s 			page 17
+
+
+ 740:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.Resolution            = ADC_RESOLUTION12b;
+ 164              		.loc 1 740 0
+ 165 0012 4FF48033 		mov	r3, #65536
+ 166 0016 6360     		str	r3, [r4, #4]
+ 741:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+ 167              		.loc 1 741 0
+ 168 0018 0023     		movs	r3, #0
+ 169 001a A360     		str	r3, [r4, #8]
+ 742:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ContinuousConvMode    = DISABLE;
+ 170              		.loc 1 742 0
+ 171 001c E360     		str	r3, [r4, #12]
+ 743:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DiscontinuousConvMode = DISABLE;
+ 172              		.loc 1 743 0
+ 173 001e 2376     		strb	r3, [r4, #24]
+ 744:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE;
+ 174              		.loc 1 744 0
+ 175 0020 84F82030 		strb	r3, [r4, #32]
+ 745:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.EOCSelection          = EOC_SINGLE_CONV;
+ 176              		.loc 1 745 0
+ 177 0024 E362     		str	r3, [r4, #44]
+ 746:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.NbrOfConversion       = 1;
+ 178              		.loc 1 746 0
+ 179 0026 0122     		movs	r2, #1
+ 180 0028 6261     		str	r2, [r4, #20]
+ 747:Core/Src/stm32f4xx_nucleo_144.c ****     hnucleo_Adc.Init.DMAContinuousRequests = DISABLE;    
+ 181              		.loc 1 747 0
+ 182 002a E261     		str	r2, [r4, #28]
+ 748:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 183              		.loc 1 748 0
+ 184 002c 84F83030 		strb	r3, [r4, #48]
+ 750:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_ADC_Init(&hnucleo_Adc);
+ 185              		.loc 1 750 0
+ 186 0030 2046     		mov	r0, r4
+ 187 0032 FFF7FEFF 		bl	ADCx_MspInit
+ 188              	.LVL7:
+ 751:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 189              		.loc 1 751 0
+ 190 0036 2046     		mov	r0, r4
+ 191 0038 FFF7FEFF 		bl	HAL_ADC_Init
+ 192              	.LVL8:
+ 193              		.loc 1 753 0
+ 194 003c E5E7     		b	.L9
+ 195              	.L14:
+ 196 003e 00BF     		.align	2
+ 197              	.L13:
+ 198 0040 00000000 		.word	.LANCHOR0
+ 199 0044 00200140 		.word	1073815552
+ 200              		.cfi_endproc
+ 201              	.LFE227:
+ 203              		.section	.text.ADCx_DeInit,"ax",%progbits
+ 204              		.align	1
+ 205              		.syntax unified
+ 206              		.thumb
+ 207              		.thumb_func
+ 208              		.fpu fpv4-sp-d16
+ 210              	ADCx_DeInit:
+ 211              	.LFB228:
+ARM GAS  /tmp/ccw9oWBc.s 			page 18
+
+
+ 754:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 755:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 756:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Initializes ADC HAL.
+ 757:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 758:Core/Src/stm32f4xx_nucleo_144.c **** static void ADCx_DeInit(void)
+ 759:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 212              		.loc 1 759 0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216 0000 10B5     		push	{r4, lr}
+ 217              	.LCFI5:
+ 218              		.cfi_def_cfa_offset 8
+ 219              		.cfi_offset 4, -8
+ 220              		.cfi_offset 14, -4
+ 760:Core/Src/stm32f4xx_nucleo_144.c ****   hnucleo_Adc.Instance   = NUCLEO_ADCx;
+ 221              		.loc 1 760 0
+ 222 0002 054C     		ldr	r4, .L17
+ 223 0004 054B     		ldr	r3, .L17+4
+ 224 0006 2360     		str	r3, [r4]
+ 761:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 762:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_ADC_DeInit(&hnucleo_Adc);
+ 225              		.loc 1 762 0
+ 226 0008 2046     		mov	r0, r4
+ 227 000a FFF7FEFF 		bl	HAL_ADC_DeInit
+ 228              	.LVL9:
+ 763:Core/Src/stm32f4xx_nucleo_144.c ****   ADCx_MspDeInit(&hnucleo_Adc);
+ 229              		.loc 1 763 0
+ 230 000e 2046     		mov	r0, r4
+ 231 0010 FFF7FEFF 		bl	ADCx_MspDeInit
+ 232              	.LVL10:
+ 764:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 233              		.loc 1 764 0
+ 234 0014 10BD     		pop	{r4, pc}
+ 235              	.L18:
+ 236 0016 00BF     		.align	2
+ 237              	.L17:
+ 238 0018 00000000 		.word	.LANCHOR0
+ 239 001c 00200140 		.word	1073815552
+ 240              		.cfi_endproc
+ 241              	.LFE228:
+ 243              		.section	.text.BSP_GetVersion,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	BSP_GetVersion
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 249              		.fpu fpv4-sp-d16
+ 251              	BSP_GetVersion:
+ 252              	.LFB216:
+ 178:Core/Src/stm32f4xx_nucleo_144.c ****   return __STM32F4xx_NUCLEO_BSP_VERSION;
+ 253              		.loc 1 178 0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              		@ link register save eliminated.
+ 180:Core/Src/stm32f4xx_nucleo_144.c **** 
+ARM GAS  /tmp/ccw9oWBc.s 			page 19
+
+
+ 258              		.loc 1 180 0
+ 259 0000 0048     		ldr	r0, .L20
+ 260 0002 7047     		bx	lr
+ 261              	.L21:
+ 262              		.align	2
+ 263              	.L20:
+ 264 0004 00030001 		.word	16777984
+ 265              		.cfi_endproc
+ 266              	.LFE216:
+ 268              		.section	.text.BSP_LED_Init,"ax",%progbits
+ 269              		.align	1
+ 270              		.global	BSP_LED_Init
+ 271              		.syntax unified
+ 272              		.thumb
+ 273              		.thumb_func
+ 274              		.fpu fpv4-sp-d16
+ 276              	BSP_LED_Init:
+ 277              	.LFB217:
+ 191:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 278              		.loc 1 191 0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 32
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              	.LVL11:
+ 283 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 284              	.LCFI6:
+ 285              		.cfi_def_cfa_offset 20
+ 286              		.cfi_offset 4, -20
+ 287              		.cfi_offset 5, -16
+ 288              		.cfi_offset 6, -12
+ 289              		.cfi_offset 7, -8
+ 290              		.cfi_offset 14, -4
+ 291 0002 89B0     		sub	sp, sp, #36
+ 292              	.LCFI7:
+ 293              		.cfi_def_cfa_offset 56
+ 195:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 294              		.loc 1 195 0
+ 295 0004 0446     		mov	r4, r0
+ 296 0006 18B3     		cbz	r0, .L26
+ 297              	.LBB4:
+ 195:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 298              		.loc 1 195 0 is_stmt 0 discriminator 2
+ 299 0008 0023     		movs	r3, #0
+ 300 000a 0293     		str	r3, [sp, #8]
+ 301 000c 174B     		ldr	r3, .L27
+ 302 000e 1A6B     		ldr	r2, [r3, #48]
+ 303 0010 42F00202 		orr	r2, r2, #2
+ 304 0014 1A63     		str	r2, [r3, #48]
+ 305 0016 1B6B     		ldr	r3, [r3, #48]
+ 306 0018 03F00203 		and	r3, r3, #2
+ 307 001c 0293     		str	r3, [sp, #8]
+ 308 001e 029B     		ldr	r3, [sp, #8]
+ 309              	.L24:
+ 310              	.LBE4:
+ 198:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 311              		.loc 1 198 0 is_stmt 1
+ 312 0020 134B     		ldr	r3, .L27+4
+ARM GAS  /tmp/ccw9oWBc.s 			page 20
+
+
+ 313 0022 33F81460 		ldrh	r6, [r3, r4, lsl #1]
+ 314 0026 0396     		str	r6, [sp, #12]
+ 199:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 315              		.loc 1 199 0
+ 316 0028 0123     		movs	r3, #1
+ 317 002a 0493     		str	r3, [sp, #16]
+ 200:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+ 318              		.loc 1 200 0
+ 319 002c 0027     		movs	r7, #0
+ 320 002e 0597     		str	r7, [sp, #20]
+ 201:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 321              		.loc 1 201 0
+ 322 0030 0223     		movs	r3, #2
+ 323 0032 0693     		str	r3, [sp, #24]
+ 203:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_RESET); 
+ 324              		.loc 1 203 0
+ 325 0034 0F4D     		ldr	r5, .L27+8
+ 326 0036 03A9     		add	r1, sp, #12
+ 327 0038 55F82400 		ldr	r0, [r5, r4, lsl #2]
+ 328              	.LVL12:
+ 329 003c FFF7FEFF 		bl	HAL_GPIO_Init
+ 330              	.LVL13:
+ 204:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 331              		.loc 1 204 0
+ 332 0040 3A46     		mov	r2, r7
+ 333 0042 3146     		mov	r1, r6
+ 334 0044 55F82400 		ldr	r0, [r5, r4, lsl #2]
+ 335 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 336              	.LVL14:
+ 205:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 337              		.loc 1 205 0
+ 338 004c 09B0     		add	sp, sp, #36
+ 339              	.LCFI8:
+ 340              		.cfi_remember_state
+ 341              		.cfi_def_cfa_offset 20
+ 342              		@ sp needed
+ 343 004e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 344              	.LVL15:
+ 345              	.L26:
+ 346              	.LCFI9:
+ 347              		.cfi_restore_state
+ 348              	.LBB5:
+ 195:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 349              		.loc 1 195 0 discriminator 1
+ 350 0050 0023     		movs	r3, #0
+ 351 0052 0193     		str	r3, [sp, #4]
+ 352 0054 054B     		ldr	r3, .L27
+ 353 0056 1A6B     		ldr	r2, [r3, #48]
+ 354 0058 42F00202 		orr	r2, r2, #2
+ 355 005c 1A63     		str	r2, [r3, #48]
+ 356 005e 1B6B     		ldr	r3, [r3, #48]
+ 357 0060 03F00203 		and	r3, r3, #2
+ 358 0064 0193     		str	r3, [sp, #4]
+ 359 0066 019B     		ldr	r3, [sp, #4]
+ 360              	.LBE5:
+ 361 0068 DAE7     		b	.L24
+ 362              	.L28:
+ARM GAS  /tmp/ccw9oWBc.s 			page 21
+
+
+ 363 006a 00BF     		.align	2
+ 364              	.L27:
+ 365 006c 00380240 		.word	1073887232
+ 366 0070 00000000 		.word	.LANCHOR1
+ 367 0074 00000000 		.word	.LANCHOR2
+ 368              		.cfi_endproc
+ 369              	.LFE217:
+ 371              		.section	.text.BSP_LED_DeInit,"ax",%progbits
+ 372              		.align	1
+ 373              		.global	BSP_LED_DeInit
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu fpv4-sp-d16
+ 379              	BSP_LED_DeInit:
+ 380              	.LFB218:
+ 217:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef  gpio_init_structure;
+ 381              		.loc 1 217 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              	.LVL16:
+ 386 0000 70B5     		push	{r4, r5, r6, lr}
+ 387              	.LCFI10:
+ 388              		.cfi_def_cfa_offset 16
+ 389              		.cfi_offset 4, -16
+ 390              		.cfi_offset 5, -12
+ 391              		.cfi_offset 6, -8
+ 392              		.cfi_offset 14, -4
+ 393 0002 0446     		mov	r4, r0
+ 221:Core/Src/stm32f4xx_nucleo_144.c ****   /* DeInit the GPIO_LED pin */
+ 394              		.loc 1 221 0
+ 395 0004 074B     		ldr	r3, .L31
+ 396 0006 33F81060 		ldrh	r6, [r3, r0, lsl #1]
+ 397 000a 074D     		ldr	r5, .L31+4
+ 398 000c 0022     		movs	r2, #0
+ 399 000e 3146     		mov	r1, r6
+ 400 0010 55F82000 		ldr	r0, [r5, r0, lsl #2]
+ 401              	.LVL17:
+ 402 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 403              	.LVL18:
+ 224:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 404              		.loc 1 224 0
+ 405 0018 3146     		mov	r1, r6
+ 406 001a 55F82400 		ldr	r0, [r5, r4, lsl #2]
+ 407 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 408              	.LVL19:
+ 225:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 409              		.loc 1 225 0
+ 410 0022 70BD     		pop	{r4, r5, r6, pc}
+ 411              	.L32:
+ 412              		.align	2
+ 413              	.L31:
+ 414 0024 00000000 		.word	.LANCHOR1
+ 415 0028 00000000 		.word	.LANCHOR2
+ 416              		.cfi_endproc
+ 417              	.LFE218:
+ARM GAS  /tmp/ccw9oWBc.s 			page 22
+
+
+ 419              		.section	.text.BSP_LED_On,"ax",%progbits
+ 420              		.align	1
+ 421              		.global	BSP_LED_On
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 425              		.fpu fpv4-sp-d16
+ 427              	BSP_LED_On:
+ 428              	.LFB219:
+ 234:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_SET); 
+ 429              		.loc 1 234 0
+ 430              		.cfi_startproc
+ 431              		@ args = 0, pretend = 0, frame = 0
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 433              	.LVL20:
+ 434 0000 08B5     		push	{r3, lr}
+ 435              	.LCFI11:
+ 436              		.cfi_def_cfa_offset 8
+ 437              		.cfi_offset 3, -8
+ 438              		.cfi_offset 14, -4
+ 235:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 439              		.loc 1 235 0
+ 440 0002 0122     		movs	r2, #1
+ 441 0004 044B     		ldr	r3, .L35
+ 442 0006 33F81010 		ldrh	r1, [r3, r0, lsl #1]
+ 443 000a 044B     		ldr	r3, .L35+4
+ 444 000c 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 445              	.LVL21:
+ 446 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 447              	.LVL22:
+ 236:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 448              		.loc 1 236 0
+ 449 0014 08BD     		pop	{r3, pc}
+ 450              	.L36:
+ 451 0016 00BF     		.align	2
+ 452              	.L35:
+ 453 0018 00000000 		.word	.LANCHOR1
+ 454 001c 00000000 		.word	.LANCHOR2
+ 455              		.cfi_endproc
+ 456              	.LFE219:
+ 458              		.section	.text.BSP_LED_Off,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	BSP_LED_Off
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 464              		.fpu fpv4-sp-d16
+ 466              	BSP_LED_Off:
+ 467              	.LFB220:
+ 247:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_WritePin(GPIO_PORT[Led], GPIO_PIN[Led], GPIO_PIN_RESET); 
+ 468              		.loc 1 247 0
+ 469              		.cfi_startproc
+ 470              		@ args = 0, pretend = 0, frame = 0
+ 471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 472              	.LVL23:
+ 473 0000 08B5     		push	{r3, lr}
+ 474              	.LCFI12:
+ARM GAS  /tmp/ccw9oWBc.s 			page 23
+
+
+ 475              		.cfi_def_cfa_offset 8
+ 476              		.cfi_offset 3, -8
+ 477              		.cfi_offset 14, -4
+ 248:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 478              		.loc 1 248 0
+ 479 0002 0022     		movs	r2, #0
+ 480 0004 044B     		ldr	r3, .L39
+ 481 0006 33F81010 		ldrh	r1, [r3, r0, lsl #1]
+ 482 000a 044B     		ldr	r3, .L39+4
+ 483 000c 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 484              	.LVL24:
+ 485 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 486              	.LVL25:
+ 249:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 487              		.loc 1 249 0
+ 488 0014 08BD     		pop	{r3, pc}
+ 489              	.L40:
+ 490 0016 00BF     		.align	2
+ 491              	.L39:
+ 492 0018 00000000 		.word	.LANCHOR1
+ 493 001c 00000000 		.word	.LANCHOR2
+ 494              		.cfi_endproc
+ 495              	.LFE220:
+ 497              		.section	.text.BSP_LED_Toggle,"ax",%progbits
+ 498              		.align	1
+ 499              		.global	BSP_LED_Toggle
+ 500              		.syntax unified
+ 501              		.thumb
+ 502              		.thumb_func
+ 503              		.fpu fpv4-sp-d16
+ 505              	BSP_LED_Toggle:
+ 506              	.LFB221:
+ 260:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_TogglePin(GPIO_PORT[Led], GPIO_PIN[Led]);
+ 507              		.loc 1 260 0
+ 508              		.cfi_startproc
+ 509              		@ args = 0, pretend = 0, frame = 0
+ 510              		@ frame_needed = 0, uses_anonymous_args = 0
+ 511              	.LVL26:
+ 512 0000 08B5     		push	{r3, lr}
+ 513              	.LCFI13:
+ 514              		.cfi_def_cfa_offset 8
+ 515              		.cfi_offset 3, -8
+ 516              		.cfi_offset 14, -4
+ 261:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 517              		.loc 1 261 0
+ 518 0002 044B     		ldr	r3, .L43
+ 519 0004 33F81010 		ldrh	r1, [r3, r0, lsl #1]
+ 520 0008 034B     		ldr	r3, .L43+4
+ 521 000a 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 522              	.LVL27:
+ 523 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 524              	.LVL28:
+ 262:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 525              		.loc 1 262 0
+ 526 0012 08BD     		pop	{r3, pc}
+ 527              	.L44:
+ 528              		.align	2
+ARM GAS  /tmp/ccw9oWBc.s 			page 24
+
+
+ 529              	.L43:
+ 530 0014 00000000 		.word	.LANCHOR1
+ 531 0018 00000000 		.word	.LANCHOR2
+ 532              		.cfi_endproc
+ 533              	.LFE221:
+ 535              		.section	.text.BSP_PB_Init,"ax",%progbits
+ 536              		.align	1
+ 537              		.global	BSP_PB_Init
+ 538              		.syntax unified
+ 539              		.thumb
+ 540              		.thumb_func
+ 541              		.fpu fpv4-sp-d16
+ 543              	BSP_PB_Init:
+ 544              	.LFB222:
+ 275:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef GPIO_InitStruct;
+ 545              		.loc 1 275 0
+ 546              		.cfi_startproc
+ 547              		@ args = 0, pretend = 0, frame = 24
+ 548              		@ frame_needed = 0, uses_anonymous_args = 0
+ 549              	.LVL29:
+ 550 0000 30B5     		push	{r4, r5, lr}
+ 551              	.LCFI14:
+ 552              		.cfi_def_cfa_offset 12
+ 553              		.cfi_offset 4, -12
+ 554              		.cfi_offset 5, -8
+ 555              		.cfi_offset 14, -4
+ 556 0002 87B0     		sub	sp, sp, #28
+ 557              	.LCFI15:
+ 558              		.cfi_def_cfa_offset 40
+ 559 0004 0546     		mov	r5, r0
+ 560              	.LBB6:
+ 279:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 561              		.loc 1 279 0
+ 562 0006 0023     		movs	r3, #0
+ 563 0008 0093     		str	r3, [sp]
+ 564 000a 1B4B     		ldr	r3, .L51
+ 565 000c 1A6B     		ldr	r2, [r3, #48]
+ 566 000e 42F00402 		orr	r2, r2, #4
+ 567 0012 1A63     		str	r2, [r3, #48]
+ 568 0014 1B6B     		ldr	r3, [r3, #48]
+ 569 0016 03F00403 		and	r3, r3, #4
+ 570 001a 0093     		str	r3, [sp]
+ 571 001c 009B     		ldr	r3, [sp]
+ 572              	.LBE6:
+ 281:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 573              		.loc 1 281 0
+ 574 001e 0C46     		mov	r4, r1
+ 575 0020 19B1     		cbz	r1, .L49
+ 576              	.LVL30:
+ 577              	.L46:
+ 291:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 578              		.loc 1 291 0
+ 579 0022 012C     		cmp	r4, #1
+ 580 0024 10D0     		beq	.L50
+ 581              	.L45:
+ 303:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 582              		.loc 1 303 0
+ARM GAS  /tmp/ccw9oWBc.s 			page 25
+
+
+ 583 0026 07B0     		add	sp, sp, #28
+ 584              	.LCFI16:
+ 585              		.cfi_remember_state
+ 586              		.cfi_def_cfa_offset 12
+ 587              		@ sp needed
+ 588 0028 30BD     		pop	{r4, r5, pc}
+ 589              	.LVL31:
+ 590              	.L49:
+ 591              	.LCFI17:
+ 592              		.cfi_restore_state
+ 284:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 593              		.loc 1 284 0
+ 594 002a 4FF40053 		mov	r3, #8192
+ 595 002e 0193     		str	r3, [sp, #4]
+ 285:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+ 596              		.loc 1 285 0
+ 597 0030 0023     		movs	r3, #0
+ 598 0032 0293     		str	r3, [sp, #8]
+ 286:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+ 599              		.loc 1 286 0
+ 600 0034 0223     		movs	r3, #2
+ 601 0036 0393     		str	r3, [sp, #12]
+ 287:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStruct);
+ 602              		.loc 1 287 0
+ 603 0038 0493     		str	r3, [sp, #16]
+ 288:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 604              		.loc 1 288 0
+ 605 003a 01A9     		add	r1, sp, #4
+ 606              	.LVL32:
+ 607 003c 0F4B     		ldr	r3, .L51+4
+ 608 003e 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 609              	.LVL33:
+ 610 0042 FFF7FEFF 		bl	HAL_GPIO_Init
+ 611              	.LVL34:
+ 612 0046 ECE7     		b	.L46
+ 613              	.L50:
+ 294:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 614              		.loc 1 294 0
+ 615 0048 4FF40053 		mov	r3, #8192
+ 616 004c 0193     		str	r3, [sp, #4]
+ 295:Core/Src/stm32f4xx_nucleo_144.c ****     GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING; 
+ 617              		.loc 1 295 0
+ 618 004e 0024     		movs	r4, #0
+ 619 0050 0394     		str	r4, [sp, #12]
+ 296:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStruct);
+ 620              		.loc 1 296 0
+ 621 0052 4FF40413 		mov	r3, #2162688
+ 622 0056 0293     		str	r3, [sp, #8]
+ 297:Core/Src/stm32f4xx_nucleo_144.c ****     
+ 623              		.loc 1 297 0
+ 624 0058 01A9     		add	r1, sp, #4
+ 625 005a 084B     		ldr	r3, .L51+4
+ 626 005c 53F82500 		ldr	r0, [r3, r5, lsl #2]
+ 627 0060 FFF7FEFF 		bl	HAL_GPIO_Init
+ 628              	.LVL35:
+ 300:Core/Src/stm32f4xx_nucleo_144.c ****     HAL_NVIC_EnableIRQ((IRQn_Type)(BUTTON_IRQn[Button]));
+ 629              		.loc 1 300 0
+ARM GAS  /tmp/ccw9oWBc.s 			page 26
+
+
+ 630 0064 2246     		mov	r2, r4
+ 631 0066 0F21     		movs	r1, #15
+ 632 0068 2820     		movs	r0, #40
+ 633 006a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 634              	.LVL36:
+ 301:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 635              		.loc 1 301 0
+ 636 006e 2820     		movs	r0, #40
+ 637 0070 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 638              	.LVL37:
+ 303:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 639              		.loc 1 303 0
+ 640 0074 D7E7     		b	.L45
+ 641              	.L52:
+ 642 0076 00BF     		.align	2
+ 643              	.L51:
+ 644 0078 00380240 		.word	1073887232
+ 645 007c 00000000 		.word	.LANCHOR3
+ 646              		.cfi_endproc
+ 647              	.LFE222:
+ 649              		.section	.text.BSP_PB_DeInit,"ax",%progbits
+ 650              		.align	1
+ 651              		.global	BSP_PB_DeInit
+ 652              		.syntax unified
+ 653              		.thumb
+ 654              		.thumb_func
+ 655              		.fpu fpv4-sp-d16
+ 657              	BSP_PB_DeInit:
+ 658              	.LFB223:
+ 312:Core/Src/stm32f4xx_nucleo_144.c ****   GPIO_InitTypeDef gpio_init_structure;
+ 659              		.loc 1 312 0
+ 660              		.cfi_startproc
+ 661              		@ args = 0, pretend = 0, frame = 0
+ 662              		@ frame_needed = 0, uses_anonymous_args = 0
+ 663              	.LVL38:
+ 664 0000 10B5     		push	{r4, lr}
+ 665              	.LCFI18:
+ 666              		.cfi_def_cfa_offset 8
+ 667              		.cfi_offset 4, -8
+ 668              		.cfi_offset 14, -4
+ 669 0002 0446     		mov	r4, r0
+ 316:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_GPIO_DeInit(BUTTON_PORT[Button], gpio_init_structure.Pin);
+ 670              		.loc 1 316 0
+ 671 0004 2820     		movs	r0, #40
+ 672              	.LVL39:
+ 673 0006 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 674              	.LVL40:
+ 317:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 675              		.loc 1 317 0
+ 676 000a 4FF40051 		mov	r1, #8192
+ 677 000e 034B     		ldr	r3, .L55
+ 678 0010 53F82400 		ldr	r0, [r3, r4, lsl #2]
+ 679 0014 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 680              	.LVL41:
+ 318:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 681              		.loc 1 318 0
+ 682 0018 10BD     		pop	{r4, pc}
+ARM GAS  /tmp/ccw9oWBc.s 			page 27
+
+
+ 683              	.L56:
+ 684 001a 00BF     		.align	2
+ 685              	.L55:
+ 686 001c 00000000 		.word	.LANCHOR3
+ 687              		.cfi_endproc
+ 688              	.LFE223:
+ 690              		.section	.text.BSP_PB_GetState,"ax",%progbits
+ 691              		.align	1
+ 692              		.global	BSP_PB_GetState
+ 693              		.syntax unified
+ 694              		.thumb
+ 695              		.thumb_func
+ 696              		.fpu fpv4-sp-d16
+ 698              	BSP_PB_GetState:
+ 699              	.LFB224:
+ 327:Core/Src/stm32f4xx_nucleo_144.c ****   return HAL_GPIO_ReadPin(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+ 700              		.loc 1 327 0
+ 701              		.cfi_startproc
+ 702              		@ args = 0, pretend = 0, frame = 0
+ 703              		@ frame_needed = 0, uses_anonymous_args = 0
+ 704              	.LVL42:
+ 705 0000 08B5     		push	{r3, lr}
+ 706              	.LCFI19:
+ 707              		.cfi_def_cfa_offset 8
+ 708              		.cfi_offset 3, -8
+ 709              		.cfi_offset 14, -4
+ 328:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 710              		.loc 1 328 0
+ 711 0002 4FF40051 		mov	r1, #8192
+ 712 0006 034B     		ldr	r3, .L59
+ 713 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 714              	.LVL43:
+ 715 000c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 716              	.LVL44:
+ 329:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 717              		.loc 1 329 0
+ 718 0010 08BD     		pop	{r3, pc}
+ 719              	.L60:
+ 720 0012 00BF     		.align	2
+ 721              	.L59:
+ 722 0014 00000000 		.word	.LANCHOR3
+ 723              		.cfi_endproc
+ 724              	.LFE224:
+ 726              		.section	.text.BSP_JOY_Init,"ax",%progbits
+ 727              		.align	1
+ 728              		.global	BSP_JOY_Init
+ 729              		.syntax unified
+ 730              		.thumb
+ 731              		.thumb_func
+ 732              		.fpu fpv4-sp-d16
+ 734              	BSP_JOY_Init:
+ 735              	.LFB229:
+ 765:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 766:Core/Src/stm32f4xx_nucleo_144.c **** /******************************* LINK JOYSTICK ********************************/
+ 767:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 768:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 769:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Configures joystick available on adafruit 1.8" TFT shield 
+ARM GAS  /tmp/ccw9oWBc.s 			page 28
+
+
+ 770:Core/Src/stm32f4xx_nucleo_144.c ****   *         managed through ADC to detect motion.
+ 771:Core/Src/stm32f4xx_nucleo_144.c ****   * @retval Joystickstatus (0=> success, 1=> fail) 
+ 772:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 773:Core/Src/stm32f4xx_nucleo_144.c **** uint8_t BSP_JOY_Init(void)
+ 774:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 736              		.loc 1 774 0
+ 737              		.cfi_startproc
+ 738              		@ args = 0, pretend = 0, frame = 0
+ 739              		@ frame_needed = 0, uses_anonymous_args = 0
+ 740 0000 08B5     		push	{r3, lr}
+ 741              	.LCFI20:
+ 742              		.cfi_def_cfa_offset 8
+ 743              		.cfi_offset 3, -8
+ 744              		.cfi_offset 14, -4
+ 745              	.LVL45:
+ 775:Core/Src/stm32f4xx_nucleo_144.c ****   uint8_t status = HAL_ERROR;
+ 776:Core/Src/stm32f4xx_nucleo_144.c ****    
+ 777:Core/Src/stm32f4xx_nucleo_144.c ****   ADCx_Init();
+ 746              		.loc 1 777 0
+ 747 0002 FFF7FEFF 		bl	ADCx_Init
+ 748              	.LVL46:
+ 778:Core/Src/stm32f4xx_nucleo_144.c ****    
+ 779:Core/Src/stm32f4xx_nucleo_144.c ****   /* Select the ADC Channel to be converted */
+ 780:Core/Src/stm32f4xx_nucleo_144.c ****   sConfig.Channel      = NUCLEO_ADCx_CHANNEL;
+ 749              		.loc 1 780 0
+ 750 0006 0549     		ldr	r1, .L63
+ 751 0008 0B23     		movs	r3, #11
+ 752 000a 0B60     		str	r3, [r1]
+ 781:Core/Src/stm32f4xx_nucleo_144.c ****   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+ 753              		.loc 1 781 0
+ 754 000c 0023     		movs	r3, #0
+ 755 000e 8B60     		str	r3, [r1, #8]
+ 782:Core/Src/stm32f4xx_nucleo_144.c ****   sConfig.Rank         = 1;
+ 756              		.loc 1 782 0
+ 757 0010 0123     		movs	r3, #1
+ 758 0012 4B60     		str	r3, [r1, #4]
+ 783:Core/Src/stm32f4xx_nucleo_144.c ****   status = HAL_ADC_ConfigChannel(&hnucleo_Adc, &sConfig);
+ 759              		.loc 1 783 0
+ 760 0014 0248     		ldr	r0, .L63+4
+ 761 0016 FFF7FEFF 		bl	HAL_ADC_ConfigChannel
+ 762              	.LVL47:
+ 784:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 785:Core/Src/stm32f4xx_nucleo_144.c ****   /* Return Joystick initialization status */
+ 786:Core/Src/stm32f4xx_nucleo_144.c ****   return status;
+ 787:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 763              		.loc 1 787 0
+ 764 001a 08BD     		pop	{r3, pc}
+ 765              	.L64:
+ 766              		.align	2
+ 767              	.L63:
+ 768 001c 00000000 		.word	.LANCHOR4
+ 769 0020 00000000 		.word	.LANCHOR0
+ 770              		.cfi_endproc
+ 771              	.LFE229:
+ 773              		.section	.text.BSP_JOY_DeInit,"ax",%progbits
+ 774              		.align	1
+ 775              		.global	BSP_JOY_DeInit
+ARM GAS  /tmp/ccw9oWBc.s 			page 29
+
+
+ 776              		.syntax unified
+ 777              		.thumb
+ 778              		.thumb_func
+ 779              		.fpu fpv4-sp-d16
+ 781              	BSP_JOY_DeInit:
+ 782              	.LFB230:
+ 788:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 789:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 790:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  DeInit joystick GPIOs.
+ 791:Core/Src/stm32f4xx_nucleo_144.c ****   * @note   JOY DeInit does not disable the Mfx, just set the Mfx pins in Off mode
+ 792:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 793:Core/Src/stm32f4xx_nucleo_144.c **** void BSP_JOY_DeInit(void)
+ 794:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 783              		.loc 1 794 0
+ 784              		.cfi_startproc
+ 785              		@ args = 0, pretend = 0, frame = 0
+ 786              		@ frame_needed = 0, uses_anonymous_args = 0
+ 787 0000 08B5     		push	{r3, lr}
+ 788              	.LCFI21:
+ 789              		.cfi_def_cfa_offset 8
+ 790              		.cfi_offset 3, -8
+ 791              		.cfi_offset 14, -4
+ 795:Core/Src/stm32f4xx_nucleo_144.c ****   ADCx_DeInit();
+ 792              		.loc 1 795 0
+ 793 0002 FFF7FEFF 		bl	ADCx_DeInit
+ 794              	.LVL48:
+ 796:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 795              		.loc 1 796 0
+ 796 0006 08BD     		pop	{r3, pc}
+ 797              		.cfi_endproc
+ 798              	.LFE230:
+ 800              		.section	.text.BSP_JOY_GetState,"ax",%progbits
+ 801              		.align	1
+ 802              		.global	BSP_JOY_GetState
+ 803              		.syntax unified
+ 804              		.thumb
+ 805              		.thumb_func
+ 806              		.fpu fpv4-sp-d16
+ 808              	BSP_JOY_GetState:
+ 809              	.LFB231:
+ 797:Core/Src/stm32f4xx_nucleo_144.c **** 
+ 798:Core/Src/stm32f4xx_nucleo_144.c **** /**
+ 799:Core/Src/stm32f4xx_nucleo_144.c ****   * @brief  Returns the Joystick key pressed.
+ 800:Core/Src/stm32f4xx_nucleo_144.c ****   * @note   To know which Joystick key is pressed we need to detect the voltage
+ 801:Core/Src/stm32f4xx_nucleo_144.c ****   *         level on each key output
+ 802:Core/Src/stm32f4xx_nucleo_144.c ****   *           - None  : 3.3 V / 4095
+ 803:Core/Src/stm32f4xx_nucleo_144.c ****   *           - SEL   : 1.055 V / 1308
+ 804:Core/Src/stm32f4xx_nucleo_144.c ****   *           - DOWN  : 0.71 V / 88
+ 805:Core/Src/stm32f4xx_nucleo_144.c ****   *           - LEFT  : 3.0 V / 3720 
+ 806:Core/Src/stm32f4xx_nucleo_144.c ****   *           - RIGHT : 0.595 V / 737
+ 807:Core/Src/stm32f4xx_nucleo_144.c ****   *           - UP    : 1.65 V / 2046
+ 808:Core/Src/stm32f4xx_nucleo_144.c ****   * @retval JOYState_TypeDef: Code of the Joystick key pressed.
+ 809:Core/Src/stm32f4xx_nucleo_144.c ****   */
+ 810:Core/Src/stm32f4xx_nucleo_144.c **** JOYState_TypeDef BSP_JOY_GetState(void)
+ 811:Core/Src/stm32f4xx_nucleo_144.c **** {
+ 810              		.loc 1 811 0
+ 811              		.cfi_startproc
+ARM GAS  /tmp/ccw9oWBc.s 			page 30
+
+
+ 812              		@ args = 0, pretend = 0, frame = 0
+ 813              		@ frame_needed = 0, uses_anonymous_args = 0
+ 814 0000 10B5     		push	{r4, lr}
+ 815              	.LCFI22:
+ 816              		.cfi_def_cfa_offset 8
+ 817              		.cfi_offset 4, -8
+ 818              		.cfi_offset 14, -4
+ 819              	.LVL49:
+ 812:Core/Src/stm32f4xx_nucleo_144.c ****   JOYState_TypeDef state;
+ 813:Core/Src/stm32f4xx_nucleo_144.c ****   uint16_t  keyconvertedvalue = 0;
+ 814:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 815:Core/Src/stm32f4xx_nucleo_144.c ****   /* Start the conversion process */
+ 816:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_ADC_Start(&hnucleo_Adc);
+ 820              		.loc 1 816 0
+ 821 0002 1E4C     		ldr	r4, .L79
+ 822 0004 2046     		mov	r0, r4
+ 823 0006 FFF7FEFF 		bl	HAL_ADC_Start
+ 824              	.LVL50:
+ 817:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 818:Core/Src/stm32f4xx_nucleo_144.c ****   /* Wait for the end of conversion */
+ 819:Core/Src/stm32f4xx_nucleo_144.c ****   HAL_ADC_PollForConversion(&hnucleo_Adc, 10);
+ 825              		.loc 1 819 0
+ 826 000a 0A21     		movs	r1, #10
+ 827 000c 2046     		mov	r0, r4
+ 828 000e FFF7FEFF 		bl	HAL_ADC_PollForConversion
+ 829              	.LVL51:
+ 820:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 821:Core/Src/stm32f4xx_nucleo_144.c ****   /* Check if the continuous conversion of regular channel is finished */
+ 822:Core/Src/stm32f4xx_nucleo_144.c ****   if((HAL_ADC_GetState(&hnucleo_Adc) & HAL_ADC_STATE_EOC_REG) == HAL_ADC_STATE_EOC_REG)
+ 830              		.loc 1 822 0
+ 831 0012 2046     		mov	r0, r4
+ 832 0014 FFF7FEFF 		bl	HAL_ADC_GetState
+ 833              	.LVL52:
+ 834 0018 10F4007F 		tst	r0, #512
+ 835 001c 1BD1     		bne	.L78
+ 813:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 836              		.loc 1 813 0
+ 837 001e 0020     		movs	r0, #0
+ 838              	.LVL53:
+ 839              	.L68:
+ 823:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 824:Core/Src/stm32f4xx_nucleo_144.c ****     /* Get the converted value of regular channel */
+ 825:Core/Src/stm32f4xx_nucleo_144.c ****     keyconvertedvalue = HAL_ADC_GetValue(&hnucleo_Adc);
+ 826:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 827:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 828:Core/Src/stm32f4xx_nucleo_144.c ****   if((keyconvertedvalue > 2010) && (keyconvertedvalue < 2090))
+ 840              		.loc 1 828 0
+ 841 0020 A0F2DB73 		subw	r3, r0, #2011
+ 842 0024 9BB2     		uxth	r3, r3
+ 843 0026 4E2B     		cmp	r3, #78
+ 844 0028 1AD9     		bls	.L72
+ 829:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 830:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_UP;
+ 831:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 832:Core/Src/stm32f4xx_nucleo_144.c ****   else if((keyconvertedvalue > 680) && (keyconvertedvalue < 780))
+ 845              		.loc 1 832 0
+ 846 002a A0F2A923 		subw	r3, r0, #681
+ARM GAS  /tmp/ccw9oWBc.s 			page 31
+
+
+ 847 002e 9BB2     		uxth	r3, r3
+ 848 0030 622B     		cmp	r3, #98
+ 849 0032 17D9     		bls	.L73
+ 833:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 834:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_RIGHT;
+ 835:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 836:Core/Src/stm32f4xx_nucleo_144.c ****   else if((keyconvertedvalue > 1270) && (keyconvertedvalue < 1350))
+ 850              		.loc 1 836 0
+ 851 0034 A0F2F743 		subw	r3, r0, #1271
+ 852 0038 9BB2     		uxth	r3, r3
+ 853 003a 4E2B     		cmp	r3, #78
+ 854 003c 18D9     		bls	.L74
+ 837:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 838:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_SEL;
+ 839:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 840:Core/Src/stm32f4xx_nucleo_144.c ****   else if((keyconvertedvalue > 50) && (keyconvertedvalue < 130))
+ 855              		.loc 1 840 0
+ 856 003e A0F13303 		sub	r3, r0, #51
+ 857 0042 9BB2     		uxth	r3, r3
+ 858 0044 4E2B     		cmp	r3, #78
+ 859 0046 15D9     		bls	.L75
+ 841:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 842:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_DOWN;
+ 843:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 844:Core/Src/stm32f4xx_nucleo_144.c ****   else if((keyconvertedvalue > 3680) && (keyconvertedvalue < 3760))
+ 860              		.loc 1 844 0
+ 861 0048 A0F66160 		subw	r0, r0, #3681
+ 862              	.LVL54:
+ 863 004c 80B2     		uxth	r0, r0
+ 864 004e 4E28     		cmp	r0, #78
+ 865 0050 12D8     		bhi	.L76
+ 845:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 846:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_LEFT;
+ 866              		.loc 1 846 0
+ 867 0052 0324     		movs	r4, #3
+ 868 0054 07E0     		b	.L69
+ 869              	.LVL55:
+ 870              	.L78:
+ 825:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 871              		.loc 1 825 0
+ 872 0056 2046     		mov	r0, r4
+ 873 0058 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 874              	.LVL56:
+ 875 005c 80B2     		uxth	r0, r0
+ 876              	.LVL57:
+ 877 005e DFE7     		b	.L68
+ 878              	.L72:
+ 830:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 879              		.loc 1 830 0
+ 880 0060 0524     		movs	r4, #5
+ 881 0062 00E0     		b	.L69
+ 882              	.L73:
+ 834:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 883              		.loc 1 834 0
+ 884 0064 0424     		movs	r4, #4
+ 885              	.LVL58:
+ 886              	.L69:
+ARM GAS  /tmp/ccw9oWBc.s 			page 32
+
+
+ 847:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 848:Core/Src/stm32f4xx_nucleo_144.c ****   else
+ 849:Core/Src/stm32f4xx_nucleo_144.c ****   {
+ 850:Core/Src/stm32f4xx_nucleo_144.c ****     state = JOY_NONE;
+ 851:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 852:Core/Src/stm32f4xx_nucleo_144.c ****   
+ 853:Core/Src/stm32f4xx_nucleo_144.c ****   /* Loop while a key is pressed */
+ 854:Core/Src/stm32f4xx_nucleo_144.c ****   if(state != JOY_NONE)
+ 855:Core/Src/stm32f4xx_nucleo_144.c ****   { 
+ 856:Core/Src/stm32f4xx_nucleo_144.c ****     keyconvertedvalue = HAL_ADC_GetValue(&hnucleo_Adc);  
+ 887              		.loc 1 856 0
+ 888 0066 0548     		ldr	r0, .L79
+ 889 0068 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 890              	.LVL59:
+ 891              	.L70:
+ 857:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 858:Core/Src/stm32f4xx_nucleo_144.c ****   /* Return the code of the Joystick key pressed */
+ 859:Core/Src/stm32f4xx_nucleo_144.c ****   return state;
+ 860:Core/Src/stm32f4xx_nucleo_144.c **** }
+ 892              		.loc 1 860 0
+ 893 006c 2046     		mov	r0, r4
+ 894 006e 10BD     		pop	{r4, pc}
+ 895              	.LVL60:
+ 896              	.L74:
+ 838:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 897              		.loc 1 838 0
+ 898 0070 0124     		movs	r4, #1
+ 899 0072 F8E7     		b	.L69
+ 900              	.L75:
+ 842:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 901              		.loc 1 842 0
+ 902 0074 0224     		movs	r4, #2
+ 903 0076 F6E7     		b	.L69
+ 904              	.LVL61:
+ 905              	.L76:
+ 850:Core/Src/stm32f4xx_nucleo_144.c ****   }
+ 906              		.loc 1 850 0
+ 907 0078 0024     		movs	r4, #0
+ 908 007a F7E7     		b	.L70
+ 909              	.L80:
+ 910              		.align	2
+ 911              	.L79:
+ 912 007c 00000000 		.word	.LANCHOR0
+ 913              		.cfi_endproc
+ 914              	.LFE231:
+ 916              		.global	BUTTON_IRQn
+ 917              		.global	BUTTON_PIN
+ 918              		.global	BUTTON_PORT
+ 919              		.global	GPIO_PIN
+ 920              		.global	GPIO_PORT
+ 921              		.section	.bss.hnucleo_Adc,"aw",%nobits
+ 922              		.align	2
+ 923              		.set	.LANCHOR0,. + 0
+ 926              	hnucleo_Adc:
+ 927 0000 00000000 		.space	72
+ 927      00000000 
+ 927      00000000 
+ARM GAS  /tmp/ccw9oWBc.s 			page 33
+
+
+ 927      00000000 
+ 927      00000000 
+ 928              		.section	.bss.sConfig,"aw",%nobits
+ 929              		.align	2
+ 930              		.set	.LANCHOR4,. + 0
+ 933              	sConfig:
+ 934 0000 00000000 		.space	16
+ 934      00000000 
+ 934      00000000 
+ 934      00000000 
+ 935              		.section	.data.BUTTON_PORT,"aw",%progbits
+ 936              		.align	2
+ 937              		.set	.LANCHOR3,. + 0
+ 940              	BUTTON_PORT:
+ 941 0000 00080240 		.word	1073874944
+ 942              		.section	.data.GPIO_PORT,"aw",%progbits
+ 943              		.align	2
+ 944              		.set	.LANCHOR2,. + 0
+ 947              	GPIO_PORT:
+ 948 0000 00040240 		.word	1073873920
+ 949 0004 00040240 		.word	1073873920
+ 950 0008 00040240 		.word	1073873920
+ 951              		.section	.rodata.BUTTON_IRQn,"a",%progbits
+ 952              		.align	2
+ 955              	BUTTON_IRQn:
+ 956 0000 28       		.byte	40
+ 957              		.section	.rodata.BUTTON_PIN,"a",%progbits
+ 958              		.align	2
+ 961              	BUTTON_PIN:
+ 962 0000 0020     		.short	8192
+ 963              		.section	.rodata.GPIO_PIN,"a",%progbits
+ 964              		.align	2
+ 965              		.set	.LANCHOR1,. + 0
+ 968              	GPIO_PIN:
+ 969 0000 0100     		.short	1
+ 970 0002 8000     		.short	128
+ 971 0004 0040     		.short	16384
+ 972              		.text
+ 973              	.Letext0:
+ 974              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f413xx.h"
+ 975              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 976              		.file 4 "/usr/include/newlib/sys/_stdint.h"
+ 977              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 978              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 979              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 980              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 981              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 982              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 983              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
+ 984              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 985              		.file 13 "Core/Inc/stm32f4xx_nucleo_144.h"
+ 986              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ARM GAS  /tmp/ccw9oWBc.s 			page 34
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_nucleo_144.c
+     /tmp/ccw9oWBc.s:18     .text.ADCx_MspInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:24     .text.ADCx_MspInit:0000000000000000 ADCx_MspInit
+     /tmp/ccw9oWBc.s:88     .text.ADCx_MspInit:0000000000000048 $d
+     /tmp/ccw9oWBc.s:94     .text.ADCx_MspDeInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:100    .text.ADCx_MspDeInit:0000000000000000 ADCx_MspDeInit
+     /tmp/ccw9oWBc.s:128    .text.ADCx_MspDeInit:0000000000000018 $d
+     /tmp/ccw9oWBc.s:134    .text.ADCx_Init:0000000000000000 $t
+     /tmp/ccw9oWBc.s:140    .text.ADCx_Init:0000000000000000 ADCx_Init
+     /tmp/ccw9oWBc.s:198    .text.ADCx_Init:0000000000000040 $d
+     /tmp/ccw9oWBc.s:204    .text.ADCx_DeInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:210    .text.ADCx_DeInit:0000000000000000 ADCx_DeInit
+     /tmp/ccw9oWBc.s:238    .text.ADCx_DeInit:0000000000000018 $d
+     /tmp/ccw9oWBc.s:244    .text.BSP_GetVersion:0000000000000000 $t
+     /tmp/ccw9oWBc.s:251    .text.BSP_GetVersion:0000000000000000 BSP_GetVersion
+     /tmp/ccw9oWBc.s:264    .text.BSP_GetVersion:0000000000000004 $d
+     /tmp/ccw9oWBc.s:269    .text.BSP_LED_Init:0000000000000000 $t
+     /tmp/ccw9oWBc.s:276    .text.BSP_LED_Init:0000000000000000 BSP_LED_Init
+     /tmp/ccw9oWBc.s:365    .text.BSP_LED_Init:000000000000006c $d
+     /tmp/ccw9oWBc.s:372    .text.BSP_LED_DeInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:379    .text.BSP_LED_DeInit:0000000000000000 BSP_LED_DeInit
+     /tmp/ccw9oWBc.s:414    .text.BSP_LED_DeInit:0000000000000024 $d
+     /tmp/ccw9oWBc.s:420    .text.BSP_LED_On:0000000000000000 $t
+     /tmp/ccw9oWBc.s:427    .text.BSP_LED_On:0000000000000000 BSP_LED_On
+     /tmp/ccw9oWBc.s:453    .text.BSP_LED_On:0000000000000018 $d
+     /tmp/ccw9oWBc.s:459    .text.BSP_LED_Off:0000000000000000 $t
+     /tmp/ccw9oWBc.s:466    .text.BSP_LED_Off:0000000000000000 BSP_LED_Off
+     /tmp/ccw9oWBc.s:492    .text.BSP_LED_Off:0000000000000018 $d
+     /tmp/ccw9oWBc.s:498    .text.BSP_LED_Toggle:0000000000000000 $t
+     /tmp/ccw9oWBc.s:505    .text.BSP_LED_Toggle:0000000000000000 BSP_LED_Toggle
+     /tmp/ccw9oWBc.s:530    .text.BSP_LED_Toggle:0000000000000014 $d
+     /tmp/ccw9oWBc.s:536    .text.BSP_PB_Init:0000000000000000 $t
+     /tmp/ccw9oWBc.s:543    .text.BSP_PB_Init:0000000000000000 BSP_PB_Init
+     /tmp/ccw9oWBc.s:644    .text.BSP_PB_Init:0000000000000078 $d
+     /tmp/ccw9oWBc.s:650    .text.BSP_PB_DeInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:657    .text.BSP_PB_DeInit:0000000000000000 BSP_PB_DeInit
+     /tmp/ccw9oWBc.s:686    .text.BSP_PB_DeInit:000000000000001c $d
+     /tmp/ccw9oWBc.s:691    .text.BSP_PB_GetState:0000000000000000 $t
+     /tmp/ccw9oWBc.s:698    .text.BSP_PB_GetState:0000000000000000 BSP_PB_GetState
+     /tmp/ccw9oWBc.s:722    .text.BSP_PB_GetState:0000000000000014 $d
+     /tmp/ccw9oWBc.s:727    .text.BSP_JOY_Init:0000000000000000 $t
+     /tmp/ccw9oWBc.s:734    .text.BSP_JOY_Init:0000000000000000 BSP_JOY_Init
+     /tmp/ccw9oWBc.s:768    .text.BSP_JOY_Init:000000000000001c $d
+     /tmp/ccw9oWBc.s:774    .text.BSP_JOY_DeInit:0000000000000000 $t
+     /tmp/ccw9oWBc.s:781    .text.BSP_JOY_DeInit:0000000000000000 BSP_JOY_DeInit
+     /tmp/ccw9oWBc.s:801    .text.BSP_JOY_GetState:0000000000000000 $t
+     /tmp/ccw9oWBc.s:808    .text.BSP_JOY_GetState:0000000000000000 BSP_JOY_GetState
+     /tmp/ccw9oWBc.s:912    .text.BSP_JOY_GetState:000000000000007c $d
+     /tmp/ccw9oWBc.s:955    .rodata.BUTTON_IRQn:0000000000000000 BUTTON_IRQn
+     /tmp/ccw9oWBc.s:961    .rodata.BUTTON_PIN:0000000000000000 BUTTON_PIN
+     /tmp/ccw9oWBc.s:940    .data.BUTTON_PORT:0000000000000000 BUTTON_PORT
+     /tmp/ccw9oWBc.s:968    .rodata.GPIO_PIN:0000000000000000 GPIO_PIN
+     /tmp/ccw9oWBc.s:947    .data.GPIO_PORT:0000000000000000 GPIO_PORT
+     /tmp/ccw9oWBc.s:922    .bss.hnucleo_Adc:0000000000000000 $d
+     /tmp/ccw9oWBc.s:926    .bss.hnucleo_Adc:0000000000000000 hnucleo_Adc
+     /tmp/ccw9oWBc.s:929    .bss.sConfig:0000000000000000 $d
+ARM GAS  /tmp/ccw9oWBc.s 			page 35
+
+
+     /tmp/ccw9oWBc.s:933    .bss.sConfig:0000000000000000 sConfig
+     /tmp/ccw9oWBc.s:936    .data.BUTTON_PORT:0000000000000000 $d
+     /tmp/ccw9oWBc.s:943    .data.GPIO_PORT:0000000000000000 $d
+     /tmp/ccw9oWBc.s:952    .rodata.BUTTON_IRQn:0000000000000000 $d
+     /tmp/ccw9oWBc.s:958    .rodata.BUTTON_PIN:0000000000000000 $d
+     /tmp/ccw9oWBc.s:964    .rodata.GPIO_PIN:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_GPIO_DeInit
+HAL_ADC_GetState
+HAL_ADC_Init
+HAL_ADC_DeInit
+HAL_GPIO_WritePin
+HAL_GPIO_TogglePin
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_NVIC_DisableIRQ
+HAL_GPIO_ReadPin
+HAL_ADC_ConfigChannel
+HAL_ADC_Start
+HAL_ADC_PollForConversion
+HAL_ADC_GetValue
